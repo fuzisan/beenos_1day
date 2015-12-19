@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+    <title>画像を出す</title>
+    <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+</head>
+<body>
+
+<script>
+$(document).ready(function() {
+  $.ajax({
+    type: 'GET',
+    url: 'https://api.flickr.com/services/rest/?method=flickr.photos.search&tags=cat&format=json&api_key=8a2a345b64a90a614627a9984a2a5ae2',
+    dataType: 'jsonp',
+    success: function(data) {
+      return data;
+    },
+    error:function() {
+      return "何らかの理由で失敗しました";
+    }
+  });
+});
+
+function jsonFlickrApi(data) {
+  var json = JSON.stringify(data);
+  console.log(json);
+}
+
+
+
+
+
+
+</script>
+</body>
+
+
+</html>
