@@ -6,7 +6,8 @@
     <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
 </head>
 <body>
-
+<div id="img">
+</div>
 <script>
 $(document).ready(function() {
   $.ajax({
@@ -24,11 +25,15 @@ $(document).ready(function() {
 
 function jsonFlickrApi(data) {
   var json = JSON.stringify(data);
-  console.log(json);
+  console.log(data);
+  var photo = data.photos.photo[0];
+  var farm = photo.farm;
+  var server = photo.server;
+  var id = photo.id;
+  var secret = photo.secret;
+  var img =document.getElementById("img");
+  img.innerHTML= "<img src=https://farm"+farm+".staticflickr.com/"+server+"/"+id+"_"+secret+".jpg>";
 }
-
-
-
 
 
 
