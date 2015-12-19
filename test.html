@@ -8,18 +8,32 @@
 <body>
 <div id="img">
 </div>
+<p>おみくじ</p>
+<p><input type="button" value="引く" id ="btn" ></p>
+
 <script>
-$(document).ready(function() {
-  $.ajax({
-    type: 'GET',
-    url: 'https://api.flickr.com/services/rest/?method=flickr.photos.search&tags=cat&format=json&api_key=8a2a345b64a90a614627a9984a2a5ae2',
-    dataType: 'jsonp',
-    success: function(data) {
-      return data;
-    },
-    error:function() {
-      return "何らかの理由で失敗しました";
-    }
+function omikuji(){
+  var nakami =["Happy","normal","bad"];
+  tag=nakami[Math.random()+1]
+  return tag;
+}
+$(document).ready(function(){
+  $("#btn").click(function() {
+    var tag=omikuji();
+    var url='https://api.flickr.com/services/rest/?method=flickr.photos.search&tags=' + tag;
+    var tuduki='&format=json&api_key=8a2a345b64a90a614627a9984a2a5ae2&per_page=1';
+    $.ajax({
+      type: 'GET',
+      url: url+tag+tuduki,
+      dataType: 'jsonp',
+      success: function(data) {
+
+        return data;
+      },
+      error:function() {
+        return "何らかの理由で失敗しました";
+      }
+    });
   });
 });
 
